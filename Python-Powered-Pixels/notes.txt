@@ -1,0 +1,3 @@
+homework:
+- draw every basic shape using all shapes except the one you're trying to draw
+- draw a line only using points
