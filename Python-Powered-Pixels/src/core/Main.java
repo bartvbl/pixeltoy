@@ -21,7 +21,7 @@ public class Main {
 		newFrame();
 		clearScreen();
 		
-		interpreter.execfile("init.py");
+		interpreter.exec(InitScript.initScript);
 		interpreter.execfile("script.py");
 		idle();
 	}
