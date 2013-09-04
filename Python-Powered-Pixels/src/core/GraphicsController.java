@@ -11,6 +11,7 @@ import org.newdawn.slick.opengl.TextureImpl;
 public class GraphicsController {
 	private final TrueTypeFont font = new TrueTypeFont(new Font("Arial", Font.PLAIN, 18), true);
 	private final int circleDisplayListID = generateCircleDisplayList();
+	private final int squareDisplayListID = generateSquareDisplayList();
 	private int[] currentColour = new int[]{0, 0, 0, 255};
 	
 	private static int generateCircleDisplayList() {
@@ -30,13 +31,27 @@ public class GraphicsController {
 		return listID;
 	}
 	
-	public void drawRectangle(double x, double y, double width, double height) {
+	private static int generateSquareDisplayList() {
+		int listID = glGenLists(1);
+		glNewList(listID, GL_COMPILE);
+		
 		glBegin(GL_QUADS);
-		glVertex2d(x, y);
-		glVertex2d(x + width, y);
-		glVertex2d(x + width, y + height);
-		glVertex2d(x, y + height);
+		glVertex2d(0, 0);
+		glVertex2d(1, 0);
+		glVertex2d(1, 1);
+		glVertex2d(0, 1);
 		glEnd();
+		
+		glEndList();
+		return listID;
+	}
+	
+	public void drawRectangle(double x, double y, double width, double height) {
+		glPushMatrix();
+		glScaled(width, height, 1);
+		glTranslated(x/width, y/height, 0);
+		glCallList(squareDisplayListID);
+		glPopMatrix();
 	}
 	
 	public void drawCircle(double x, double y, double radius) {
