@@ -35,8 +35,10 @@ ballArray = []
 for i in xrange(1, 100):
 	ballArray.append(Ball())
 
-while 1:
+counter = 0
+
+while counter < 600:
+	counter += 1
 	newFrame()
 	for ball in ballArray:
 		ball.draw()
-	

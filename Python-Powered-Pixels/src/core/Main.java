@@ -20,6 +20,7 @@ public class Main {
 		clearScreen();
 		newFrame();
 		clearScreen();
+		TextureRenderer.init();
 		
 		interpreter.exec(InitScript.initScript);
 		interpreter.execfile("script.py");
@@ -56,6 +57,9 @@ public class Main {
 	}
 	
 	public static void newFrame() {
+		TextureRenderer.drawScreenFrame();
+		TextureRenderer.updateTexture();
+		
 		Display.update();
 		Display.sync(60);
 
@@ -80,8 +84,10 @@ public class Main {
 
 	private static void idle() {
 		while(!Display.isCloseRequested()) {
+			TextureRenderer.drawScreenFrame();
+			
 			Display.update();
-			Display.sync(20);
+			Display.sync(60);
 		}
 	}
 
