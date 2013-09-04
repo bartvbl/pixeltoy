@@ -40,14 +40,9 @@ public class InitScript {
 			"\n	global sys_graphicsController" +
 			"\n	sys_graphicsController.useColour(r, g, b, a)" +
 			"\n" +
-			"\ndef clearScreen():" +
-			"\n	global sys_graphicsController" +
-			"\n	sys_gameController.clearScreen()" +
-			"\n" +
 			"\ndef newFrame():" +
 			"\n	global sys_graphicsController" +
 			"\n	sys_gameController.newFrame()" +
-			"\n	clearScreen()" +
 			"\n" +
 			"\ndef isMouseDown():" +
 			"\n	global sys_inputController" +
@@ -61,5 +56,7 @@ public class InitScript {
 			"\n_mouseX = 0" +
 			"\n_mouseY = 0" +
 			"\n_screenWidth = 640" +
-			"\n_screenHeight = 480";
+			"\n_screenHeight = 480" +
+			"\n" +
+			"\nsys_graphicsController.resetColour()";
 }

@@ -15,15 +15,10 @@ public class Main {
 	
 	public static void main(String[] args) {
 		interpreter = new PythonInterpreter();
-
 		createWindow();
 		initOpenGL();
-		clearScreen();
-		newFrame();
-		clearScreen();
-		TextureRenderer.init();
-		
 		interpreter.exec(InitScript.initScript);
+		TextureRenderer.init();
 		interpreter.execfile("script.py");
 		idle();
 	}
@@ -31,7 +26,7 @@ public class Main {
 	private static void createWindow() {
 		try {
 			Display.setResizable(true);
-			Display.setTitle("Python Powered Pixels");
+			Display.setTitle("Pixel Toy");
 			Display.setLocation(100, 100);
 			Display.setDisplayMode(new DisplayMode(640, 480));
 			Display.create();
@@ -57,7 +52,7 @@ public class Main {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
-	public static void newFrame() {
+	private static void newFrame() {
 		TextureRenderer.drawScreenFrame();
 		TextureRenderer.updateTexture();
 		
@@ -79,7 +74,8 @@ public class Main {
 		glDisable(GL_TEXTURE_2D);
 	}
 	
-	public static void clearScreen() {
+	public static void newBlankFrame() {
+		newFrame();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	}
 

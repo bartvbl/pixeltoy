@@ -84,5 +84,8 @@ public class GraphicsController {
 		glColor4d(red, green, blue, alpha);
 		this.currentColour = new int[]{(int) r, (int) g, (int) b, (int) a};
 	}
-
+	
+	public void resetColour() {
+		useColour(255, 0, 0, 255);
+	}
 }
