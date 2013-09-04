@@ -5,7 +5,6 @@
 	<classpathentry kind="lib" path="jar/jython.jar"/>
 	<classpathentry kind="lib" path="jar/AppleJavaExtensions.jar"/>
 	<classpathentry kind="lib" path="jar/jinput.jar"/>
-	<classpathentry kind="lib" path="jar/lzma.jar"/>
 	<classpathentry kind="lib" path="jar/lwjgl_util.jar"/>
 	<classpathentry kind="lib" path="jar/slick-util.jar"/>
 	<classpathentry kind="lib" path="jar/lwjgl.jar">
