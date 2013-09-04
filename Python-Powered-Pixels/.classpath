@@ -3,13 +3,12 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="jar/jython.jar"/>
-	<classpathentry kind="lib" path="jar/AppleJavaExtensions.jar"/>
-	<classpathentry kind="lib" path="jar/jinput.jar"/>
-	<classpathentry kind="lib" path="jar/lwjgl_util.jar"/>
 	<classpathentry kind="lib" path="jar/slick-util.jar"/>
-	<classpathentry kind="lib" path="jar/lwjgl.jar">
+	<classpathentry kind="lib" path="/LibraryRepository/jar/LWJGL/2.9.0/jinput.jar"/>
+	<classpathentry kind="lib" path="/LibraryRepository/jar/LWJGL/2.9.0/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="/LibraryRepository/jar/LWJGL/2.9.0/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Python-Powered-Pixels/native"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="LibraryRepository/jar/LWJGL/2.9.0/native"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
