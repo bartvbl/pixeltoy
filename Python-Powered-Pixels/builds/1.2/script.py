@@ -1,42 +1,113 @@
-class Ball:
-	x = 0
-	y = 0
-	ySpeed = 0.0
-	radius = 0.0
-	red = 0.0
-	green = 0.0
-	blue = 0.0
-	
-	def __init__(self):
-		self.generateBall()
-	
-	def draw(self):
-		self.ySpeed -= 1
-		self.y += self.ySpeed
-		useColour(self.red, self.green, self.blue, 255)
-		drawCircle(self.x, self.y, self.radius)
-		
-		if((self.y < 0) & (self.ySpeed < 0)):
-			self.ySpeed *= -0.95
-			self.y = 0
-			self.radius -= 3
-			if self.radius < 0:
-				self.generateBall()
-	
-	def generateBall(self):
-		self.x = random() * _screenWidth
-		self.y = random() * _screenHeight
-		self.radius = (random() * 70) + 10
-		self.red = (random() * 254) + 1
-		self.green = (random() * 254) + 1
-		self.blue = (random() * 254) + 1
+from math import *
 
-ballArray = []
-for i in xrange(1, 10):
-	ballArray.append(Ball())
+circleRadius = 25
 
-while 1:
+points = 0
+
+speed1x = 0
+speed1y = 0
+
+speed2x = 0
+speed2y = 0
+
+#acceleration
+accel = 0.05
+
+Player2x = _screenWidth / 10
+Player2y = _screenHeight / 2
+
+Player1x = _screenWidth * 0.9
+Player1y = _screenHeight / 2
+
+while True:
 	newFrame()
-	for ball in ballArray:
-		ball.draw()
+	useColour(255, 0, 0, 255)
+	drawCircle(Player1x, Player1y, circleRadius)
+	useColour(0, 0, 255, 255)
+	drawCircle(Player2x, Player2y, circleRadius)
+	drawString(20,20,"Points: "+str(points))
 	
+	if isKeyDown('UP'):
+		speed1y = speed1y + accel
+		
+	if isKeyDown('DOWN'):
+		speed1y = speed1y - accel
+		
+	if isKeyDown('LEFT'):
+		speed1x = speed1x - accel
+		
+	if isKeyDown('RIGHT'):
+		speed1x = speed1x + accel
+		
+	Player1y = Player1y + speed1y
+	Player1x = Player1x + speed1x
+	speed1y = speed1y * 0.99
+	speed1x = speed1x * 0.99
+		
+	if isKeyDown('w'):
+		speed2y = speed2y + accel
+		
+	if isKeyDown('s'):
+		speed2y = speed2y - accel
+		
+	if isKeyDown('a'):
+		speed2x = speed2x - accel
+		
+	if isKeyDown('d'):
+		speed2x = speed2x + accel
+	
+	Player2y = Player2y + speed2y
+	Player2x = Player2x + speed2x
+	speed2y = speed2y * 0.99
+	speed2x = speed2x * 0.99
+	
+	if Player1y < circleRadius:
+		speed1y = speed1y * -1
+		Player1y = (circleRadius+1)
+		
+	if Player1y > (_screenHeight - circleRadius):
+		speed1y = speed1y * -1
+		Player1y = _screenHeight - (circleRadius+1)
+		
+	if Player1x < circleRadius:
+		speed1x = speed1x * -1
+		Player1x = (circleRadius+1)
+	
+	if Player1x > (_screenWidth - circleRadius):
+		speed1x = speed1x * -1
+		Player1x = _screenWidth - (circleRadius+1)
+		
+		
+		
+	if Player2y < circleRadius:
+		speed2y = speed2y * -1
+		Player2y = (circleRadius+1)
+		
+	if Player2y > (_screenHeight - circleRadius):
+		speed2y = speed2y * -1
+		Player2y = _screenHeight - (circleRadius+1)
+		
+	if Player2x < circleRadius:
+		speed2x = speed2x * -1
+		Player2x = (circleRadius+1)
+	
+	if Player2x > (_screenWidth - circleRadius):
+		speed2x = speed2x * -1
+		Player2x = _screenWidth - (circleRadius+1)
+	
+	if sqrt ((Player1x-Player2x) * (Player1x-Player2x) + (Player1y-Player2y) * (Player1y-Player2y)) < 50.0:
+		
+		speed1x = 0
+		speed1y = 0
+	
+		speed2x = 0
+		speed2y = 0
+		
+		Player2x = _screenWidth / 10
+		Player2y = _screenHeight / 2
+
+		Player1x = _screenWidth * 0.9
+		Player1y = _screenHeight / 2
+	
+		points += 1
+		
