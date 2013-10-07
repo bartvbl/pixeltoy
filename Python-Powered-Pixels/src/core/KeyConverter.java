@@ -86,7 +86,7 @@ public class KeyConverter {
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_Z) && (keyCharacter.equals("z")))
 		{
 			return true;
-		} else if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && (keyCharacter.equals(" ")))
+		} else if(Keyboard.isKeyDown(Keyboard.KEY_SPACE) && (keyCharacter.equals("SPACE")))
 		{
 			return true;
 		} else if(Keyboard.isKeyDown(Keyboard.KEY_0) && (keyCharacter.equals("0")))

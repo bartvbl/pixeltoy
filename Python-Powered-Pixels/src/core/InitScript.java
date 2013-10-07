@@ -52,6 +52,13 @@ public class InitScript {
 			"\n	global sys_inputController" +
 			"\n	return sys_inputController.isKeyDown(key)" +
 			"\n" +
+			"\ndef loadImage(src):" +
+			"\n	global sys_graphicsController" +
+			"\n	return sys_graphicsController.loadImage(src)" +
+			"\n" +
+			"\ndef drawImage(image, x, y, width, height):" +
+			"\n	global sys_graphicsController" +
+			"\n	sys_graphicsController.drawImage(image, x, y, width, height)" +
 			"\n#variables updated by backend" +
 			"\n_mouseX = 0" +
 			"\n_mouseY = 0" +

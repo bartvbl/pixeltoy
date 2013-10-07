@@ -8,6 +8,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.TextureImpl;
 
+import texture.TextureLoader;
+
 public class GraphicsController {
 	private final TrueTypeFont font = new TrueTypeFont(new Font("Arial", Font.PLAIN, 18), true);
 	private final int circleDisplayListID = generateCircleDisplayList();
@@ -36,9 +38,13 @@ public class GraphicsController {
 		glNewList(listID, GL_COMPILE);
 		
 		glBegin(GL_QUADS);
+		glTexCoord2d(0, 0);
 		glVertex2d(0, 0);
+		glTexCoord2d(1, 0);
 		glVertex2d(1, 0);
+		glTexCoord2d(1, 1);
 		glVertex2d(1, 1);
+		glTexCoord2d(0, 1);
 		glVertex2d(0, 1);
 		glEnd();
 		
@@ -98,6 +104,25 @@ public class GraphicsController {
 		double alpha = a / 255d;
 		glColor4d(red, green, blue, alpha);
 		this.currentColour = new int[]{(int) r, (int) g, (int) b, (int) a};
+	}
+	
+	public int loadImage(String src) {
+		return TextureLoader.loadTextureFromFile(src);
+	}
+	
+	public void drawImage(int image, double x, double y, double width, double height) {
+		glEnable(GL_TEXTURE_2D);
+		glColor4d(1, 1, 1, 1);
+
+		glBindTexture(GL_TEXTURE_2D, image);
+		drawRectangle(x, y, width, height);
+		
+		glDisable(GL_TEXTURE_2D);
+		double red = (double)currentColour[0] / 255d;
+		double green = (double)currentColour[1] / 255d;
+		double blue = (double)currentColour[2] / 255d;
+		double alpha = (double)currentColour[3] / 255d;
+		glColor4d(red, green, blue, alpha);
 	}
 	
 	public void resetColour() {
