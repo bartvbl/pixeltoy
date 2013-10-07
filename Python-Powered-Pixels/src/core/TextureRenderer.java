@@ -48,7 +48,9 @@ public class TextureRenderer {
 		glTexCoord2d(0, 1);
 		glVertex2d(-1, 1);
 		glEnd();
-		
+	}
+	
+	public static void setupNextFrame() {
 		glDisable(GL_TEXTURE_2D);
 		glBindFramebuffer(GL_FRAMEBUFFER, frameBufferID);
 	}

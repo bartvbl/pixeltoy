@@ -54,11 +54,13 @@ public class Main {
 	
 	private static void newFrame() {
 		TextureRenderer.drawScreenFrame();
-		TextureRenderer.updateTexture();
 		
 		Display.update();
 		Display.sync(60);
 
+		TextureRenderer.setupNextFrame();
+		TextureRenderer.updateTexture();
+		
 		if(Display.isCloseRequested()) {
 			Display.destroy();
 			System.exit(0);
@@ -82,7 +84,8 @@ public class Main {
 	private static void idle() {
 		while(!Display.isCloseRequested()) {
 			TextureRenderer.drawScreenFrame();
-			
+			TextureRenderer.setupNextFrame();
+
 			Display.update();
 			Display.sync(60);
 		}
