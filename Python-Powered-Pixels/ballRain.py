@@ -32,7 +32,7 @@ class Ball:
 		self.blue = (random() * 254) + 1
 
 ballArray = []
-for i in xrange(0, 1):
+for i in xrange(0, 100):
 	ballArray.append(Ball())
 
 while 1:
