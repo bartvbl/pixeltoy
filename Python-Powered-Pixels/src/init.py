@@ -72,4 +72,4 @@ _mouseY = 0
 _screenWidth = 640 
 _screenHeight = 480 
  
-sys_graphicsController.resetColour()
+sys_colour.resetColour()
