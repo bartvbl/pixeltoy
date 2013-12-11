@@ -2,6 +2,7 @@ package core;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluOrtho2D;
+import graphics.TextureRenderer;
 
 import javax.swing.JOptionPane;
 
@@ -20,7 +21,7 @@ public class Main {
 		interpreter = new PythonInterpreter();
 		createWindow();
 		initOpenGL();
-		interpreter.exec(InitScript.initScript);
+		interpreter.execfile("src/init.py");
 		TextureRenderer.init();
 		try {
 			interpreter.execfile("script.py");

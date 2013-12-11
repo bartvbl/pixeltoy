@@ -1,4 +1,4 @@
-package core;
+package graphics;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -8,13 +8,13 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.TrueTypeFont;
 import org.newdawn.slick.opengl.TextureImpl;
 
+import texture.Texture;
 import texture.TextureLoader;
 
 public class GraphicsController {
 	private final TrueTypeFont font = new TrueTypeFont(new Font("Arial", Font.PLAIN, 18), true);
 	private final int circleDisplayListID = generateCircleDisplayList();
 	private final int squareDisplayListID = generateSquareDisplayList();
-	private int[] currentColour = new int[]{0, 0, 0, 255};
 	
 	private static int generateCircleDisplayList() {
 		int listID = glGenLists(1);
@@ -90,42 +90,25 @@ public class GraphicsController {
 		glScaled(1, -1, 1);
 		glTranslated(0, -18 + -2 * y, 0);
 		TextureImpl.bindNone();
-		Color fontColour = new Color(currentColour[0], currentColour[1], currentColour[2], currentColour[3]);
+		Color fontColour = Colour.getCurrentColour();
 		font.drawString((float)x, (float)y, string, fontColour);
 		TextureImpl.unbind();
 		glDisable(GL_TEXTURE_2D);
 		glPopMatrix();
 	}
 	
-	public void useColour(double r, double g, double b, double a) {
-		double red = r / 255d;
-		double green = g / 255d;
-		double blue = b / 255d;
-		double alpha = a / 255d;
-		glColor4d(red, green, blue, alpha);
-		this.currentColour = new int[]{(int) r, (int) g, (int) b, (int) a};
-	}
-	
-	public int loadImage(String src) {
+	public Texture loadImage(String src) {
 		return TextureLoader.loadTextureFromFile(src);
 	}
 	
-	public void drawImage(int image, double x, double y, double width, double height) {
+	public void drawImage(Texture image, double x, double y, double width, double height) {
 		glEnable(GL_TEXTURE_2D);
 		glColor4d(1, 1, 1, 1);
 
-		glBindTexture(GL_TEXTURE_2D, image);
+		image.bind();
 		drawRectangle(x, y, width, height);
 		
 		glDisable(GL_TEXTURE_2D);
-		double red = (double)currentColour[0] / 255d;
-		double green = (double)currentColour[1] / 255d;
-		double blue = (double)currentColour[2] / 255d;
-		double alpha = (double)currentColour[3] / 255d;
-		glColor4d(red, green, blue, alpha);
-	}
-	
-	public void resetColour() {
-		useColour(255, 0, 0, 255);
+		Colour.useCurrentSelectedColour();
 	}
 }
