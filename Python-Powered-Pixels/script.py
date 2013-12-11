@@ -2,6 +2,7 @@ man1 = loadImage('res/man1.png')
 man2 = loadImage('res/man2.png')
 
 while True:
+	test
 	if isKeyDown('SPACE'):
 		drawImage(man2, 32, 32, 256, 256)
 	else:

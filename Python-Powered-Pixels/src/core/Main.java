@@ -3,11 +3,14 @@ package core;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluOrtho2D;
 
+import javax.swing.JOptionPane;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
 public class Main {
@@ -19,8 +22,12 @@ public class Main {
 		initOpenGL();
 		interpreter.exec(InitScript.initScript);
 		TextureRenderer.init();
-		interpreter.execfile("script.py");
-		idle();
+		try {
+			interpreter.execfile("script.py");
+			idle();
+		} catch(Exception e) {
+			JOptionPane.showMessageDialog(null, e.toString(), "Python error", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	private static void createWindow() {
@@ -82,6 +89,7 @@ public class Main {
 	}
 
 	private static void idle() {
+		System.out.println("Idling..");
 		while(!Display.isCloseRequested()) {
 			TextureRenderer.drawScreenFrame();
 			TextureRenderer.setupNextFrame();
