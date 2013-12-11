@@ -12,9 +12,9 @@ import texture.Texture;
 import texture.TextureLoader;
 
 public class GraphicsController {
-	private final TrueTypeFont font = new TrueTypeFont(new Font("Arial", Font.PLAIN, 18), true);
-	private final int circleDisplayListID = generateCircleDisplayList();
-	private final int squareDisplayListID = generateSquareDisplayList();
+	private static final TrueTypeFont font = new TrueTypeFont(new Font("Arial", Font.PLAIN, 18), true);
+	private static final int circleDisplayListID = generateCircleDisplayList();
+	private static final int squareDisplayListID = generateSquareDisplayList();
 	
 	private static int generateCircleDisplayList() {
 		int listID = glGenLists(1);
@@ -52,7 +52,7 @@ public class GraphicsController {
 		return listID;
 	}
 	
-	public void drawRectangle(double x, double y, double width, double height) {
+	public static void drawRectangle(double x, double y, double width, double height) {
 		glPushMatrix();
 		glScaled(width, height, 1);
 		glTranslated(x/width, y/height, 0);
@@ -60,7 +60,7 @@ public class GraphicsController {
 		glPopMatrix();
 	}
 	
-	public void drawCircle(double x, double y, double radius) {
+	public static void drawCircle(double x, double y, double radius) {
 		glPushMatrix();
 		glScaled(radius, radius, 1);
 		glTranslated(x/radius, y/radius, 0);
@@ -68,24 +68,24 @@ public class GraphicsController {
 		glPopMatrix();
 	}
 	
-	public void drawTriangle(int[] point1, int[] point2, int[] point3) {
+	public static void drawTriangle(int[] point1, int[] point2, int[] point3) {
 		
 	}
 	
-	public void drawLine(double x1, double y1, double x2, double y2) {
+	public static void drawLine(double x1, double y1, double x2, double y2) {
 		glBegin(GL_LINES);
 		glVertex2d(x1, y1);
 		glVertex2d(x2, y2);
 		glEnd();
 	}
 	
-	public void drawPoint(double x, double y) {
+	public static void drawPoint(double x, double y) {
 		glBegin(GL_POINTS);
 		glVertex2d(x, y);
 		glEnd();
 	}
 	
-	public void drawString(double x, double y, String string) {
+	public static void drawString(double x, double y, String string) {
 		glPushMatrix();
 		glScaled(1, -1, 1);
 		glTranslated(0, -18 + -2 * y, 0);
@@ -97,18 +97,11 @@ public class GraphicsController {
 		glPopMatrix();
 	}
 	
-	public Texture loadImage(String src) {
+	public static Texture loadImage(String src) {
 		return TextureLoader.loadTextureFromFile(src);
 	}
 	
-	public void drawImage(Texture image, double x, double y, double width, double height) {
-		glEnable(GL_TEXTURE_2D);
-		glColor4d(1, 1, 1, 1);
-
-		image.bind();
-		drawRectangle(x, y, width, height);
-		
-		glDisable(GL_TEXTURE_2D);
-		Colour.useCurrentSelectedColour();
+	public static void drawImage(Texture image, double x, double y, double width, double height) {
+		image.draw(x, y, width, height);
 	}
 }
