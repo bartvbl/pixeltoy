@@ -17,8 +17,16 @@ public class Input {
 		interpreter.set("_screenHeight", Display.getHeight());
 	}
 	
-	public static boolean isMouseDown() {
+	public static boolean isLeftMouseDown() {
 		return Mouse.isButtonDown(0);
+	}
+	
+	public static boolean isRightMouseDown() {
+		return Mouse.isButtonDown(1);
+	}
+	
+	public static double getMouseWheelDelta() {
+		return Mouse.getDWheel();
 	}
 	
 	public static boolean isKeyDown(String keyString) {

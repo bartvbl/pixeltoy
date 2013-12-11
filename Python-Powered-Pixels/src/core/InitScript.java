@@ -44,9 +44,17 @@ public class InitScript {
 			"\n	global sys_graphicsController" +
 			"\n	sys_gameController.newFrame()" +
 			"\n" +
-			"\ndef isMouseDown():" +
+			"\ndef isLeftMouseDown():" +
 			"\n	global sys_inputController" +
-			"\n	return sys_inputController.isMouseDown()" +
+			"\n	return sys_inputController.isLeftMouseDown()" +
+			"\n" +
+			"\ndef isRightMouseDown():" +
+			"\n	global sys_inputController" +
+			"\n	return sys_inputController.isRightMouseDown()" +
+			"\n" +
+			"\ndef getMouseWheelDelta():" +
+			"\n	global sys_inputController" +
+			"\n	return sys_inputController.getMouseWheelDelta()" +
 			"\n" +
 			"\ndef isKeyDown(key):" +
 			"\n	global sys_inputController" +
