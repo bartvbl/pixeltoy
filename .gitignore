@@ -10,3 +10,4 @@
 
 #python compiled files
 *.pyc
+*.idx
