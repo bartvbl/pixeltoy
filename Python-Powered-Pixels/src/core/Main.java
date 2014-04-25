@@ -110,6 +110,8 @@ public class Main {
 	}
 
 	private static String getJARPath() {
-		return Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		File jarFile = new File(path);
+		return jarFile.getParentFile().getAbsolutePath();
 	}
 } 

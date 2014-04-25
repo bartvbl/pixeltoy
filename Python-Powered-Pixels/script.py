@@ -11,7 +11,7 @@ class Ball:
 		self.generateBall()
 	
 	def draw(self):
-		self.ySpeed -= 1
+		self.ySpeed -= 0.15
 		self.x += self.xSpeed
 		self.y += self.ySpeed
 		useColour(self.red, self.green, self.blue, 255)
