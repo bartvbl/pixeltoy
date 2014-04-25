@@ -4,13 +4,12 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry kind="lib" path="jar/jython.jar"/>
 	<classpathentry kind="lib" path="jar/slick-util.jar"/>
-	<classpathentry kind="lib" path="/CoopPuzzler/jars/AbsoluteLayout.jar"/>
-	<classpathentry kind="lib" path="/CoopPuzzler/jars/jinput.jar"/>
-	<classpathentry kind="lib" path="/CoopPuzzler/jars/lwjgl-debug.jar">
+	<classpathentry kind="lib" path="jar/lwjgl-2_9_1/jinput.jar"/>
+	<classpathentry kind="lib" path="jar/lwjgl-2_9_1/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="jar/lwjgl-2_9_1/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="CoopPuzzler/natives"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="Python-Powered-Pixels/jar/lwjgl-2_9_1/native"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/CoopPuzzler/jars/lwjgl_util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
