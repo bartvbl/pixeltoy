@@ -3,6 +3,7 @@ package core;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluOrtho2D;
 
+import java.io.File;
 import java.io.FileInputStream;
 
 import graphics.TextureRenderer;
@@ -14,6 +15,8 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.python.core.Py;
+import org.python.core.PyString;
 import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
@@ -26,6 +29,8 @@ public class Main {
 		initOpenGL();
 		try {
 			interpreter.execfile(Main.class.getClassLoader().getResourceAsStream("init.py"));
+			PySystemState sys = Py.getSystemState();
+			sys.path.append(new PyString(getJARPath()));
 			TextureRenderer.init();
 			interpreter.execfile("script.py");
 			idle();
@@ -33,6 +38,7 @@ public class Main {
 			JOptionPane.showMessageDialog(null, e.toString(), "Python error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+
 
 	private static void createWindow() {
 		try {
@@ -103,4 +109,7 @@ public class Main {
 		}
 	}
 
+	private static String getJARPath() {
+		return Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+	}
 } 
