@@ -17,10 +17,10 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 
 public class TextureLoader {	
-	public static Texture loadTextureFromFile(String src, boolean smooth)
+	public static Texture loadTextureFromFile(String src, boolean smooth, int animatedImageCountX)
 	{
 		int textureID = createTextureFromImage(loadImageFromFile(src), smooth);
-		return new Texture(textureID);
+		return new Texture(textureID, animatedImageCountX);
 	}
 	
 	private static int createTextureFromImage(BufferedImage image, boolean smooth)

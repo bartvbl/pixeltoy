@@ -49,8 +49,8 @@ def getMouseWheelDelta():
 def isKeyDown(key):
 	return sys_inputController.isKeyDown(key)
  
-def loadImage(src, smooth = True):
-	return GraphicsController.loadImage(src, smooth)
+def loadImage(src, smooth = True, animatedImageCountX = 1):
+	return GraphicsController.loadImage(src, smooth, animatedImageCountX)
  
 def drawImage(image, x, y, width, height):
 	GraphicsController.drawImage(image, x, y, width, height)

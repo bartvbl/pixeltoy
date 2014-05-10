@@ -14,7 +14,7 @@ class Ball:
 		self.ySpeed -= 0.15
 		self.x += self.xSpeed
 		self.y += self.ySpeed
-		useColour(self.red, self.green, self.blue, 255)
+		useColour(self.red, self.green, self.blue, self.alpha)
 		drawCircle(self.x, self.y, self.radius)
 		
 		if self.x - self.radius > _screenWidth:
@@ -37,12 +37,18 @@ class Ball:
 		self.red = (random() * 254) + 1
 		self.green = (random() * 254) + 1
 		self.blue = (random() * 254) + 1
+		self.alpha = (random() * 104) + 101
 
 ballArray = []
-for i in xrange(0, 100):
+for i in xrange(0, 10):
 	ballArray.append(Ball())
 
+frameCounter = 0
 while True:
 	newFrame()
+	frameCounter += 1
+	if frameCounter % 40 == 0:
+		for i in xrange(0, 10):
+			ballArray.append(Ball())
 	for ball in ballArray:
 		ball.draw()
