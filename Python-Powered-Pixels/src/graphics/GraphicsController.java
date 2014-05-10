@@ -97,8 +97,8 @@ public class GraphicsController {
 		glPopMatrix();
 	}
 	
-	public static Texture loadImage(String src) {
-		return TextureLoader.loadTextureFromFile(src);
+	public static Texture loadImage(String src, boolean smooth) {
+		return TextureLoader.loadTextureFromFile(src, smooth);
 	}
 	
 	public static void drawImage(Texture image, double x, double y, double width, double height) {

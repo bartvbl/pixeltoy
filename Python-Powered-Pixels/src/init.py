@@ -28,11 +28,14 @@ def drawPoint(x, y):
 def drawString(x, y, string):
 	GraphicsController.drawString(x, y, string)
  
-def useColour(r, g, b, a):
+def useColour(r, g, b, a = 255):
 	sys_colour.useColour(r, g, b, a)
  
 def newFrame():
 	sys_gameController.newFrame()
+	
+def quit():
+	sys_gameController.quit()
  
 def isLeftMouseDown():
 	return sys_inputController.isLeftMouseDown()
@@ -46,8 +49,8 @@ def getMouseWheelDelta():
 def isKeyDown(key):
 	return sys_inputController.isKeyDown(key)
  
-def loadImage(src):
-	return GraphicsController.loadImage(src)
+def loadImage(src, smooth = True):
+	return GraphicsController.loadImage(src, smooth)
  
 def drawImage(image, x, y, width, height):
 	GraphicsController.drawImage(image, x, y, width, height)

@@ -17,18 +17,18 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 
 public class TextureLoader {	
-	public static Texture loadTextureFromFile(String src)
+	public static Texture loadTextureFromFile(String src, boolean smooth)
 	{
-		int textureID = createTextureFromImage(loadImageFromFile(src));
+		int textureID = createTextureFromImage(loadImageFromFile(src), smooth);
 		return new Texture(textureID);
 	}
 	
-	private static int createTextureFromImage(BufferedImage image)
+	private static int createTextureFromImage(BufferedImage image, boolean smooth)
 	{
 		byte[] imageData = TexturePixelConverter.getImageDataBytes(image);
 		if((image != null) && (imageData != null))
 		{
-			return createTexture(imageData, image.getWidth(), image.getHeight());
+			return createTexture(imageData, image.getWidth(), image.getHeight(), smooth);
 		} else {
 			return -1;
 		}
@@ -65,7 +65,7 @@ public class TextureLoader {
 		return image;
 	}
 	
-	private static int createTexture(byte[] imageData, int width, int height)
+	private static int createTexture(byte[] imageData, int width, int height, boolean smooth)
 	{
 		IntBuffer textureReference = BufferUtils.createIntBuffer(1);
 		ByteBuffer bb = BufferUtils.createByteBuffer(imageData.length);
@@ -76,8 +76,13 @@ public class TextureLoader {
 		glBindTexture(GL_TEXTURE_2D,textureID);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		if(smooth) {
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);			
+		} else {
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		}
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, bb);
 		glPopAttrib();
 		return textureID;
