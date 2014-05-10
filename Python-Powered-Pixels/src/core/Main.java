@@ -111,8 +111,7 @@ public class Main {
 
 	private static String getJARPath() {
 		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-		File jarFile = new File(path);
-		System.out.println(jarFile.getAbsolutePath());
+		File jarFile = new File(path).getParentFile();
 		return jarFile.getAbsolutePath();
 	}
 } 
