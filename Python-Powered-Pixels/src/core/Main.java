@@ -4,9 +4,6 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluOrtho2D;
 
 import java.io.File;
-import java.io.FileInputStream;
-
-import graphics.TextureRenderer;
 
 import javax.swing.JOptionPane;
 
@@ -31,9 +28,7 @@ public class Main {
 			interpreter.execfile(Main.class.getClassLoader().getResourceAsStream("init.py"));
 			PySystemState sys = Py.getSystemState();
 			sys.path.append(new PyString(getJARPath()));
-			TextureRenderer.init();
 			interpreter.execfile("script.py");
-			idle();
 		} catch(Exception e) {
 			JOptionPane.showMessageDialog(null, e.toString(), "Python error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -70,14 +65,9 @@ public class Main {
 	}
 	
 	private static void newFrame() {
-		TextureRenderer.drawScreenFrame();
-		
 		Display.update();
 		Display.sync(60);
 
-		TextureRenderer.setupNextFrame();
-		TextureRenderer.updateTexture();
-		
 		if(Display.isCloseRequested()) {
 			Display.destroy();
 			System.exit(0);
@@ -96,17 +86,6 @@ public class Main {
 	public static void newBlankFrame() {
 		newFrame();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	}
-
-	private static void idle() {
-		System.out.println("Idling..");
-		while(!Display.isCloseRequested()) {
-			TextureRenderer.drawScreenFrame();
-			TextureRenderer.setupNextFrame();
-
-			Display.update();
-			Display.sync(60);
-		}
 	}
 
 	private static String getJARPath() {

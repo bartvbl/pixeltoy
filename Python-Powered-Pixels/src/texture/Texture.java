@@ -2,7 +2,6 @@ package texture;
 
 import static org.lwjgl.opengl.GL11.*;
 import graphics.Colour;
-import graphics.GraphicsController;
 
 public class Texture {
 	private final int id;
