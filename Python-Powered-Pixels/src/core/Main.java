@@ -112,6 +112,7 @@ public class Main {
 	private static String getJARPath() {
 		String path = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		File jarFile = new File(path).getParentFile();
+		System.out.println("Adding to python path: "+jarFile.getAbsolutePath());
 		return jarFile.getAbsolutePath();
 	}
 } 
