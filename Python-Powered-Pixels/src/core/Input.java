@@ -7,6 +7,10 @@ import org.python.util.PythonInterpreter;
 public class Input {
 
 	public static void updateVariables(PythonInterpreter interpreter) {
+		if(interpreter == null) {
+			return;
+		}
+		
 		int mouseX = Mouse.getX();
 		int mouseY = Mouse.getY();
 		
@@ -32,5 +36,12 @@ public class Input {
 	public static boolean isKeyDown(String keyString) {
 		return KeyConverter.isKeyDown(keyString);
 	}
+	
+	public static int getMouseX() {
+		return Mouse.getX();
+	}
 
+	public static int getMouseY() {
+		return Mouse.getY();
+	}
 }

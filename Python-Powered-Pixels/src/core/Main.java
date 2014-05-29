@@ -31,7 +31,7 @@ public class Main {
 			interpreter.execfile(Main.class.getClassLoader().getResourceAsStream("init.py"));
 			PySystemState sys = Py.getSystemState();
 			sys.path.append(new PyString(getJARPath()));
-			TextureRenderer.init();
+			//TextureRenderer.init();
 			interpreter.execfile("script.py");
 			idle();
 		} catch(Exception e) {
@@ -39,6 +39,11 @@ public class Main {
 		}
 	}
 
+	public static void init() {
+		createWindow();
+		initOpenGL();
+		//TextureRenderer.init();
+	}
 
 	private static void createWindow() {
 		try {
@@ -70,13 +75,13 @@ public class Main {
 	}
 	
 	private static void newFrame() {
-		TextureRenderer.drawScreenFrame();
+		//TextureRenderer.drawScreenFrame();
 		
 		Display.update();
 		Display.sync(60);
 
-		TextureRenderer.setupNextFrame();
-		TextureRenderer.updateTexture();
+		//TextureRenderer.setupNextFrame();
+		//TextureRenderer.updateTexture();
 		
 		if(Display.isCloseRequested()) {
 			Display.destroy();
@@ -88,7 +93,7 @@ public class Main {
 		glViewport(0, 0, Display.getWidth(), Display.getHeight()); 
 		gluOrtho2D(0, Display.getWidth(), 0, Display.getHeight());
 		
-		Input.updateVariables(interpreter);
+		//Input.updateVariables(interpreter);
 		
 		glDisable(GL_TEXTURE_2D);
 	}

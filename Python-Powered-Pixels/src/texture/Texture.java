@@ -11,6 +11,14 @@ public class Texture {
 	private double rotation = 0;
 	private int animationFrame = 0;
 
+	public static Texture load(String src, boolean smooth, int animatedImageCountX) {
+		return TextureLoader.loadTextureFromFile(src, smooth, animatedImageCountX);
+	}
+	
+	public static Texture load(String src) {
+		return load(src, true, 1);
+	}
+	
 	public Texture(int id, int animatedImageCountX) {
 		this.id = id;
 		this.animatedImageCountX = animatedImageCountX;
